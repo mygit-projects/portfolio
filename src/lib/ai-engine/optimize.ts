@@ -147,13 +147,15 @@ export function sanitizeOptimizePatch(raw: unknown, portfolio: PortfolioContent,
           if (!row) return null;
           const id = clipString(row.id, 1, 80);
           if (!id) return null;
-          return compact({
+          const next = compact({
             id,
             summary: clipString(row.summary, 20, 500),
             highlights: clipList(row.highlights, 8, 180),
           });
+          if (!next || Object.keys(next).length <= 1) return null;
+          return next;
         })
-        .filter((item): item is NonNullable<typeof item> => Boolean(item) && Object.keys(item).length > 1)
+        .filter((item): item is NonNullable<typeof item> => item !== null)
         .slice(0, 8)
     : undefined;
 

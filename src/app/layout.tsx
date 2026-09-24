@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import type { ReactNode } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SiteTags } from "@/components/SiteTags";
 import { StripExtensionAttrs } from "@/components/StripExtensionAttrs";
 import { getAboveTheFoldPortfolio } from "@/content/getPortfolio";
@@ -69,6 +70,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
           footerHtml={portfolio.site.footerHtml}
         />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );

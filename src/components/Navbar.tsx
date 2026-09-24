@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Menu, Sparkles, X } from "lucide-react";
 import { usePortfolio } from "@/content/PortfolioProvider";
+import { MobileBottomNav } from "./MobileBottomNav";
 
 interface NavbarProps {
   onOpenContact: () => void;
@@ -41,6 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenCvModal }) 
   }, [navigation]);
 
   return (
+    <>
     <header
       id="main-navbar"
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -159,5 +161,11 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenContact, onOpenCvModal }) 
         </div>
       )}
     </header>
+    <MobileBottomNav
+      activeSection={activeSection}
+      hashPrefix={hashPrefix}
+      onOpenCvModal={onOpenCvModal}
+    />
+    </>
   );
 };

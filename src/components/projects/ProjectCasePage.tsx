@@ -22,7 +22,7 @@ export function ProjectCasePage({ project }: { project: Project }) {
         }}
       />
 
-      <main className="pt-28 pb-20">
+      <main className="pt-28 pb-28 md:pb-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-extrabold uppercase tracking-widest text-[#7C5CFC]">{project.category}</p>
           <h1 className="mt-3 text-4xl sm:text-5xl font-black tracking-tight text-slate-900">{project.title}</h1>

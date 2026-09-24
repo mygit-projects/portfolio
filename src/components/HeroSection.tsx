@@ -79,8 +79,9 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
 
               <button
                 id="hero-download-cv-btn"
+                type="button"
                 onClick={onOpenCvModal}
-                className="px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 font-bold text-sm tracking-wide border border-slate-200 hover:border-purple-300 shadow-sm transition-all flex items-center gap-2 group cursor-pointer"
+                className="hidden md:flex px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 font-bold text-sm tracking-wide border border-slate-200 hover:border-purple-300 shadow-sm transition-all items-center gap-2 group cursor-pointer"
               >
                 <span>{ctas.downloadCv}</span>
                 <Download className="w-4 h-4 text-[#7C5CFC] group-hover:translate-y-0.5 transition-transform" />
@@ -135,7 +136,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
             )}
           </div>
 
-          <div className="lg:col-span-6 relative flex justify-center items-center min-h-[520px] sm:min-h-[580px]">
+          <div className="relative hidden min-h-[520px] items-center justify-center md:flex sm:min-h-[580px] lg:col-span-6">
             <div
               className="absolute w-[380px] h-[380px] sm:w-[480px] sm:h-[480px] rounded-full border border-purple-200/60 -z-10 animate-spin"
               style={{ animationDuration: "50s" }}

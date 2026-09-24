@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import type { ReactNode } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { StripExtensionAttrs } from "@/components/StripExtensionAttrs";
 import { getAboveTheFoldPortfolio } from "@/content/getPortfolio";
 import { getSiteUrl } from "@/lib/site";
@@ -61,6 +62,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <StripExtensionAttrs />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );

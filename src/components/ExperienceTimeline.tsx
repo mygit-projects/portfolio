@@ -12,6 +12,7 @@ import {
   Building,
   TrendingUp,
 } from "lucide-react";
+import { contrastSafeClass } from "@/lib/contrastClass";
 import { usePortfolio } from "@/content/PortfolioProvider";
 import { UaeDrivingCard } from "./UaeDrivingCard";
 
@@ -28,7 +29,7 @@ export const ExperienceTimeline: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100 text-[#7C5CFC] text-xs font-extrabold uppercase tracking-widest mb-3">
+            <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100 text-[#5B3DE0] text-xs font-extrabold uppercase tracking-widest mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{sections.experience.badge}</span>
             </div>
@@ -73,13 +74,13 @@ export const ExperienceTimeline: React.FC = () => {
                       <div className="flex items-center gap-2 flex-wrap">
                         <h3 className="text-base sm:text-lg font-black text-slate-900 leading-tight">{exp.title}</h3>
                         {exp.badge && (
-                          <span className="px-2.5 py-0.5 rounded-full bg-purple-100 text-[#7C5CFC] text-[10px] font-black uppercase tracking-wider shadow-xs">
+                          <span className="px-2.5 py-0.5 rounded-full bg-purple-100 text-[#5B3DE0] text-[10px] font-black uppercase tracking-wider shadow-xs">
                             {exp.badge}
                           </span>
                         )}
                       </div>
                       <div className="flex items-center gap-3 text-xs text-slate-500 flex-wrap font-medium">
-                        <span className="font-extrabold text-[#7C5CFC] flex items-center gap-1">
+                        <span className="font-extrabold text-[#5B3DE0] flex items-center gap-1">
                           <Building className="w-3.5 h-3.5" />
                           {exp.company}
                         </span>
@@ -98,7 +99,7 @@ export const ExperienceTimeline: React.FC = () => {
                     <div className="flex items-center gap-3 shrink-0 self-end sm:self-center">
                       <div
                         className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${
-                          isExpanded ? "bg-[#7C5CFC] text-white" : "bg-slate-100 text-slate-500"
+                          isExpanded ? "bg-[#5B3DE0] text-white" : "bg-slate-100 text-slate-500"
                         }`}
                       >
                         {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -118,7 +119,7 @@ export const ExperienceTimeline: React.FC = () => {
                         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">{exp.summary}</p>
                         <div className="space-y-2.5">
                           <h4 className="text-xs font-black text-slate-900 uppercase tracking-wider flex items-center gap-1.5">
-                            <CheckCircle2 className="w-4 h-4 text-[#7C5CFC]" />
+                            <CheckCircle2 className="w-4 h-4 text-[#5B3DE0]" />
                             <span>Key Deliverables & Documented Impact:</span>
                           </h4>
                           {exp.highlights.map((highlight) => (
@@ -126,7 +127,7 @@ export const ExperienceTimeline: React.FC = () => {
                               key={highlight}
                               className="flex items-start gap-2.5 text-xs text-slate-700 leading-relaxed bg-slate-50/70 p-2.5 rounded-xl border border-slate-100"
                             >
-                              <span className="w-1.5 h-1.5 rounded-full bg-[#7C5CFC] shrink-0 mt-1.5" />
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#5B3DE0] shrink-0 mt-1.5" />
                               <span>{highlight}</span>
                             </div>
                           ))}
@@ -136,7 +137,7 @@ export const ExperienceTimeline: React.FC = () => {
                             {exp.metrics.map((metric) => (
                               <span
                                 key={metric}
-                                className="px-3 py-1 rounded-xl bg-purple-50 text-[#7C5CFC] text-xs font-extrabold border border-purple-200/80 shadow-xs"
+                                className="px-3 py-1 rounded-xl bg-purple-50 text-[#5B3DE0] text-xs font-extrabold border border-purple-200/80 shadow-xs"
                               >
                                 {metric}
                               </span>
@@ -161,19 +162,19 @@ export const ExperienceTimeline: React.FC = () => {
           <div className="lg:col-span-4 space-y-6">
             <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200/80 shadow-md space-y-5">
               <div className="flex items-center gap-2.5 pb-4 border-b border-slate-100">
-                <div className="w-9 h-9 rounded-xl bg-purple-100 text-[#7C5CFC] flex items-center justify-center font-bold">
+                <div className="w-9 h-9 rounded-xl bg-purple-100 text-[#5B3DE0] flex items-center justify-center font-bold">
                   <TrendingUp className="w-5 h-5" />
                 </div>
                 <div>
                   <h4 className="text-sm font-black text-slate-900">{careerSidebar.heading}</h4>
-                  <p className="text-[11px] text-slate-400">{careerSidebar.period}</p>
+                  <p className="text-[11px] text-slate-600">{careerSidebar.period}</p>
                 </div>
               </div>
               <div className="space-y-3">
                 {careerSidebar.stats.map((stat) => (
                   <div key={stat.label} className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100">
                     <span className="text-xs font-bold text-slate-600">{stat.label}</span>
-                    <span className={`text-sm font-black ${stat.valueClass}`}>{stat.value}</span>
+                    <span className={`text-sm font-black ${contrastSafeClass(stat.valueClass)}`}>{stat.value}</span>
                   </div>
                 ))}
               </div>

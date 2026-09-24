@@ -22,7 +22,7 @@ export const HeroLanyardBadge: React.FC<HeroLanyardBadgeProps> = ({ onOpenContac
             <p className="text-xs sm:text-sm font-black uppercase text-slate-900 tracking-tight leading-tight">
               {personalInfo.name}
             </p>
-            <p className="text-[10px] sm:text-[11px] font-bold text-[#7C5CFC]">UAE Verified Specialist</p>
+            <p className="text-[10px] sm:text-[11px] font-bold text-[#5B3DE0]">UAE Verified Specialist</p>
           </div>
         </div>
 
@@ -39,7 +39,7 @@ export const HeroLanyardBadge: React.FC<HeroLanyardBadgeProps> = ({ onOpenContac
         </div>
         <div className="flex items-center justify-between text-xs">
           <span className="text-slate-500 font-medium">Experience:</span>
-          <span className="font-black text-[#7C5CFC]">{personalInfo.yearsExperience} Years Track Record</span>
+          <span className="font-black text-[#5B3DE0]">{personalInfo.yearsExperience} Years Track Record</span>
         </div>
         <div className="flex items-center justify-between text-xs">
           <span className="text-slate-500 font-medium">UAE Driving License:</span>
@@ -47,7 +47,7 @@ export const HeroLanyardBadge: React.FC<HeroLanyardBadgeProps> = ({ onOpenContac
         </div>
         <div className="flex items-center justify-between text-xs">
           <span className="text-slate-500 font-medium">Availability:</span>
-          <span className="inline-flex items-center gap-1.5 text-emerald-600 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/80">
+          <span className="inline-flex items-center gap-1.5 text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/80">
             <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
             Active & Available
           </span>
@@ -59,7 +59,7 @@ export const HeroLanyardBadge: React.FC<HeroLanyardBadgeProps> = ({ onOpenContac
           href={personalInfo.socialLinks.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
-          className="px-3 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md transition-all cursor-pointer"
+          className="px-3 py-2.5 rounded-xl bg-[#047857] hover:bg-[#036348] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md transition-all cursor-pointer"
         >
           <MessageCircle className="w-3.5 h-3.5" />
           <span>WhatsApp</span>
@@ -67,7 +67,7 @@ export const HeroLanyardBadge: React.FC<HeroLanyardBadgeProps> = ({ onOpenContac
 
         <button
           onClick={onOpenContact}
-          className="px-3 py-2.5 rounded-xl bg-[#7C5CFC] hover:bg-[#6842F5] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md shadow-purple-500/20 transition-all cursor-pointer"
+          className="px-3 py-2.5 rounded-xl bg-[#5B3DE0] hover:bg-[#4A2EC4] text-white text-xs font-bold flex items-center justify-center gap-1.5 shadow-sm hover:shadow-md shadow-purple-500/20 transition-all cursor-pointer"
         >
           <Phone className="w-3.5 h-3.5" />
           <span>Direct Call</span>

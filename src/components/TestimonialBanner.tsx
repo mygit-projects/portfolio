@@ -22,7 +22,7 @@ export const TestimonialBanner: React.FC = () => {
 
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="flex-1 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-purple-100/80 text-[#7C5CFC] flex items-center justify-center shrink-0 mt-1">
+              <div className="w-12 h-12 rounded-2xl bg-purple-100/80 text-[#5B3DE0] flex items-center justify-center shrink-0 mt-1">
                 <Quote className="w-6 h-6 fill-current" />
               </div>
               <div>
@@ -40,7 +40,7 @@ export const TestimonialBanner: React.FC = () => {
                       key={item.author}
                       onClick={() => setActiveIndex(idx)}
                       className={`h-2 rounded-full transition-all cursor-pointer ${
-                        activeIndex === idx ? "w-6 bg-[#7C5CFC]" : "w-2 bg-slate-200 hover:bg-slate-300"
+                        activeIndex === idx ? "w-6 bg-[#5B3DE0]" : "w-2 bg-slate-200 hover:bg-slate-300"
                       }`}
                       aria-label={`Show testimonial ${idx + 1}`}
                     />
@@ -55,12 +55,12 @@ export const TestimonialBanner: React.FC = () => {
                 alt={active.author}
                 width={56}
                 height={56}
-                className="w-14 h-14 rounded-full object-cover border-2 border-[#7C5CFC]/30 shadow-md"
+                className="w-14 h-14 rounded-full object-cover border-2 border-[#5B3DE0]/30 shadow-md"
               />
               <div>
                 <h4 className="text-base font-extrabold text-slate-900 leading-tight">{active.author}</h4>
-                <p className="text-xs text-[#7C5CFC] font-semibold">{active.role}</p>
-                <p className="text-[11px] text-slate-400 font-medium">{active.company}</p>
+                <p className="text-xs text-[#5B3DE0] font-semibold">{active.role}</p>
+                <p className="text-[11px] text-slate-600 font-medium">{active.company}</p>
               </div>
             </div>
           </div>

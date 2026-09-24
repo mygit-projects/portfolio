@@ -19,7 +19,7 @@ export const SkillsSection: React.FC = () => {
     <section id="skills" className="py-20 md:py-28 relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-left mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100 text-[#7C5CFC] text-xs font-extrabold uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-purple-100 text-[#5B3DE0] text-xs font-extrabold uppercase tracking-widest mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{sections.skills.badge}</span>
           </div>
@@ -33,10 +33,10 @@ export const SkillsSection: React.FC = () => {
           <div className="lg:col-span-6 space-y-6 bg-white p-7 sm:p-9 rounded-3xl border border-slate-200/80 shadow-lg hover:shadow-xl transition-all">
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="w-5 h-5 text-[#7C5CFC]" />
+                <ShieldCheck className="w-5 h-5 text-[#5B3DE0]" />
                 <h3 className="text-lg font-black text-slate-900">Core Competencies & Proficiency</h3>
               </div>
-              <span className="text-[11px] font-extrabold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+              <span className="text-[11px] font-extrabold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
                 Verified Expertise
               </span>
             </div>
@@ -45,8 +45,8 @@ export const SkillsSection: React.FC = () => {
               {skills.progressMeters.map((skill, index) => (
                 <div key={skill.name} className="space-y-1.5 group">
                   <div className="flex items-center justify-between text-xs font-extrabold">
-                    <span className="text-slate-800 group-hover:text-[#7C5CFC] transition-colors">{skill.name}</span>
-                    <span className="text-[#7C5CFC] font-black">{skill.level}%</span>
+                    <span className="text-slate-800 group-hover:text-[#5B3DE0] transition-colors">{skill.name}</span>
+                    <span className="text-[#5B3DE0] font-black">{skill.level}%</span>
                   </div>
                   <div className="h-2.5 w-full bg-slate-100 rounded-full overflow-hidden p-0.5 border border-slate-200/60">
                     <motion.div
@@ -54,7 +54,7 @@ export const SkillsSection: React.FC = () => {
                       whileInView={{ width: `${skill.level}%` }}
                       viewport={{ once: true }}
                       transition={{ duration: 1.2, delay: index * 0.1, ease: "easeOut" }}
-                      className="h-full bg-gradient-to-r from-[#7C5CFC] via-indigo-500 to-[#9B82FC] rounded-full shadow-xs"
+                      className="h-full bg-gradient-to-r from-[#5B3DE0] via-indigo-500 to-[#9B82FC] rounded-full shadow-xs"
                     />
                   </div>
                 </div>
@@ -62,14 +62,14 @@ export const SkillsSection: React.FC = () => {
             </div>
 
             <div className="pt-4 border-t border-slate-100">
-              <p className="text-[11px] font-black text-slate-400 uppercase tracking-wider mb-3">
+              <p className="text-[11px] font-black text-slate-600 uppercase tracking-wider mb-3">
                 Specialized Knowledge & Production Domains
               </p>
               <div className="flex flex-wrap gap-1.5">
                 {skills.specializedTags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2.5 py-1 rounded-xl bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-[#7C5CFC] border border-slate-200/80 text-[11px] font-semibold transition-colors"
+                    className="px-2.5 py-1 rounded-xl bg-slate-50 hover:bg-purple-50 text-slate-700 hover:text-[#5B3DE0] border border-slate-200/80 text-[11px] font-semibold transition-colors"
                   >
                     {tag}
                   </span>
@@ -88,7 +88,7 @@ export const SkillsSection: React.FC = () => {
                       onClick={() => setActiveCategory(cat)}
                       className={`px-3 py-1.5 rounded-xl text-[11px] font-extrabold transition-all cursor-pointer ${
                         activeCategory === cat
-                          ? "bg-[#7C5CFC] text-white shadow-sm"
+                          ? "bg-[#5B3DE0] text-white shadow-sm"
                           : "bg-slate-100 text-slate-600 hover:bg-slate-200/80"
                       }`}
                     >
@@ -126,7 +126,7 @@ export const SkillsSection: React.FC = () => {
               <div className="mt-5 p-4 rounded-2xl bg-purple-50/70 border border-purple-100/90 text-xs text-slate-700">
                 {hoveredTool ? (
                   <div>
-                    <div className="font-extrabold text-[#7C5CFC] flex items-center gap-1.5 mb-0.5">
+                    <div className="font-extrabold text-[#5B3DE0] flex items-center gap-1.5 mb-0.5">
                       <Zap className="w-3.5 h-3.5" />
                       <span>{hoveredTool.name} in Action:</span>
                     </div>
@@ -134,7 +134,7 @@ export const SkillsSection: React.FC = () => {
                   </div>
                 ) : (
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-xl bg-[#7C5CFC] text-white flex items-center justify-center shrink-0">
+                    <div className="w-8 h-8 rounded-xl bg-[#5B3DE0] text-white flex items-center justify-center shrink-0">
                       <Flame className="w-4 h-4" />
                     </div>
                     <div>
@@ -153,7 +153,7 @@ export const SkillsSection: React.FC = () => {
                 </div>
                 <div>
                   <p className="font-bold text-xs text-white">Full-Stack & Vibe Coding Synergy</p>
-                  <p className="text-[10px] text-slate-400">Spec-driven architectures delivered with sub-second performance.</p>
+                  <p className="text-[10px] text-slate-600">Spec-driven architectures delivered with sub-second performance.</p>
                 </div>
               </div>
             </div>

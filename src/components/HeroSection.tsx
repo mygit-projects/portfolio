@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { ArrowUpRight, Download, Sparkles, MessageCircle, Layout } from "lucide-react";
 import { usePortfolio } from "@/content/PortfolioProvider";
+import { contrastSafeClass } from "@/lib/contrastClass";
 import { heroStatIcons, resolveIcon } from "@/lib/icons";
 import { HangingCard } from "./HangingCard";
 import { HeroVibeSandbox } from "./HeroVibeSandbox";
@@ -40,15 +41,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
           <div className="lg:col-span-6 flex flex-col items-start z-10">
             <div
               id="hero-greeting-badge"
-              className="hero-copy-in inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-purple-200 shadow-xs text-[#7C5CFC] text-xs font-extrabold tracking-wider uppercase mb-5"
+              className="hero-copy-in inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-purple-200 shadow-xs text-[#5B3DE0] text-xs font-extrabold tracking-wider uppercase mb-5"
             >
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
               </span>
               <span className="text-slate-800 font-bold">{personalInfo.greetingBadgeLocation}</span>
-              <span className="text-slate-300">•</span>
-              <Sparkles className="w-3.5 h-3.5 text-[#7C5CFC]" />
+              <span className="text-slate-500">•</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#5B3DE0]" />
               <span>{personalInfo.greetingBadgeText}</span>
             </div>
 
@@ -58,7 +59,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
 
             <h2 className="hero-copy-in hero-copy-in-d2 text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-slate-800 mb-6">
               {personalInfo.headlinePrefix}{" "}
-              <span className="bg-gradient-to-r from-[#7C5CFC] via-[#9073FC] to-[#4F46E5] bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#5B3DE0] via-[#6D52E8] to-[#4F46E5] bg-clip-text text-transparent">
                 {personalInfo.headlineAccent}
               </span>
             </h2>
@@ -71,7 +72,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
               <a
                 href="#projects"
                 id="hero-view-work-btn"
-                className="px-6 py-3.5 rounded-2xl bg-[#7C5CFC] hover:bg-[#6A46F9] text-white font-bold text-sm tracking-wide shadow-lg shadow-purple-500/25 hover:shadow-purple-500/35 transition-all flex items-center gap-2 group cursor-pointer"
+                className="px-6 py-3.5 rounded-2xl bg-[#5B3DE0] hover:bg-[#4A2EC4] text-white font-bold text-sm tracking-wide shadow-lg shadow-purple-500/25 hover:shadow-purple-500/35 transition-all flex items-center gap-2 group cursor-pointer"
               >
                 <span>{ctas.viewWork}</span>
                 <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -84,7 +85,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
                 className="hidden md:flex px-6 py-3.5 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 font-bold text-sm tracking-wide border border-slate-200 hover:border-purple-300 shadow-sm transition-all items-center gap-2 group cursor-pointer"
               >
                 <span>{ctas.downloadCv}</span>
-                <Download className="w-4 h-4 text-[#7C5CFC] group-hover:translate-y-0.5 transition-transform" />
+                <Download className="w-4 h-4 text-[#5B3DE0] group-hover:translate-y-0.5 transition-transform" />
               </button>
 
               <a
@@ -108,7 +109,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
                   <div
                     key={stat.id}
                     onClick={() => setActiveMetricDetail(activeMetricDetail === stat.id ? null : stat.id)}
-                    className={`p-2.5 sm:p-3 rounded-2xl bg-white/70 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-md transition-all cursor-pointer group ${stat.accentClass}`}
+                    className={`p-2.5 sm:p-3 rounded-2xl bg-white/70 hover:bg-white border border-slate-200/70 shadow-xs hover:shadow-md transition-all cursor-pointer group ${contrastSafeClass(stat.accentClass)}`}
                   >
                     <div className="flex items-center gap-1.5 mb-1">
                       <Icon className="w-3.5 h-3.5" />
@@ -175,7 +176,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
                 swingDuration={5.5}
                 delay={0}
                 badgeLabel={hero.hangingCards.vibeEngine}
-                badgeColor="bg-gradient-to-r from-[#7C5CFC] to-indigo-600"
+                badgeColor="bg-gradient-to-r from-[#5B3DE0] to-indigo-600"
               >
                 <HeroVibeSandbox />
               </HangingCard>
@@ -188,7 +189,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
                 swingDuration={6}
                 delay={1.2}
                 badgeLabel={hero.hangingCards.coreWebVitals}
-                badgeColor="bg-emerald-600"
+                badgeColor="bg-emerald-800"
               >
                 <HeroSpeedDial />
               </HangingCard>
@@ -214,7 +215,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenContact, onOpenC
                 swingDuration={6.4}
                 delay={1.8}
                 badgeLabel={hero.hangingCards.stack}
-                badgeColor="bg-indigo-600"
+                badgeColor="bg-indigo-800"
               >
                 <HeroStackBadge />
               </HangingCard>

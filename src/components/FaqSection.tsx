@@ -16,7 +16,7 @@ export function FaqSection() {
     <section id="faqs" className="py-20 md:py-24 relative z-10">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-[#7C5CFC] text-xs font-extrabold uppercase tracking-widest mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-[#5B3DE0] text-xs font-extrabold uppercase tracking-widest mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{sections.faqs.badge}</span>
           </div>
@@ -37,7 +37,7 @@ export function FaqSection() {
                     className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
                   >
                     <span className="text-sm sm:text-base font-bold text-slate-900">{item.question}</span>
-                    <ChevronDown className={`h-4 w-4 shrink-0 text-[#7C5CFC] transition-transform ${open ? "rotate-180" : ""}`} />
+                    <ChevronDown className={`h-4 w-4 shrink-0 text-[#5B3DE0] transition-transform ${open ? "rotate-180" : ""}`} />
                   </button>
                 </h3>
                 {open ? <p className="px-5 pb-5 text-sm leading-relaxed text-slate-600">{item.answer}</p> : null}

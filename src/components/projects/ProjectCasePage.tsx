@@ -24,7 +24,7 @@ export function ProjectCasePage({ project }: { project: Project }) {
 
       <main className="pt-28 pb-28 md:pb-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-extrabold uppercase tracking-widest text-[#7C5CFC]">{project.category}</p>
+          <p className="text-xs font-extrabold uppercase tracking-widest text-[#5B3DE0]">{project.category}</p>
           <h1 className="mt-3 text-4xl sm:text-5xl font-black tracking-tight text-slate-900">{project.title}</h1>
           <p className="mt-3 text-xl font-bold text-slate-700">{project.subtitle}</p>
           <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-600">{project.description}</p>
@@ -34,7 +34,7 @@ export function ProjectCasePage({ project }: { project: Project }) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-2xl bg-[#7C5CFC] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-purple-500/20"
+              className="inline-flex items-center gap-2 rounded-2xl bg-[#5B3DE0] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-purple-500/20"
             >
               Live site <ExternalLink className="h-4 w-4" />
             </a>

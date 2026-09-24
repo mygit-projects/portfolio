@@ -99,11 +99,11 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
         <div className="relative rounded-3xl bg-gradient-to-br from-purple-50/90 via-white to-purple-100/50 p-8 sm:p-12 md:p-14 border border-purple-200/90 shadow-2xl shadow-purple-500/10 overflow-hidden">
           <div className="absolute right-4 bottom-4 md:right-12 md:bottom-8 w-72 h-72 opacity-25 pointer-events-none -z-0">
             <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-              <path d="M20 100L180 20L120 180L90 120L20 100Z" fill="url(#paint0_linear)" stroke="#7C5CFC" strokeWidth="2" />
-              <path d="M180 20L90 120" stroke="#7C5CFC" strokeWidth="2" strokeDasharray="4 4" />
+              <path d="M20 100L180 20L120 180L90 120L20 100Z" fill="url(#paint0_linear)" stroke="#5B3DE0" strokeWidth="2" />
+              <path d="M180 20L90 120" stroke="#5B3DE0" strokeWidth="2" strokeDasharray="4 4" />
               <defs>
                 <linearGradient id="paint0_linear" x1="20" y1="20" x2="180" y2="180" gradientUnits="userSpaceOnUse">
-                  <stop stopColor="#7C5CFC" />
+                  <stop stopColor="#5B3DE0" />
                   <stop offset="1" stopColor="#9B82FC" stopOpacity="0.2" />
                 </linearGradient>
               </defs>
@@ -113,7 +113,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
             <div className="lg:col-span-5 space-y-6">
               <div>
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-[#7C5CFC] text-xs font-extrabold uppercase tracking-widest mb-3">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-[#5B3DE0] text-xs font-extrabold uppercase tracking-widest mb-3">
                   <Sparkles className="w-3.5 h-3.5" />
                   <span>{contact.section.badge}</span>
                 </div>
@@ -125,17 +125,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
 
               <div className="p-4 rounded-2xl bg-white/95 border border-purple-100 shadow-sm flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#7C5CFC] flex items-center justify-center font-bold">
+                  <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#5B3DE0] flex items-center justify-center font-bold">
                     <Globe2 className="w-5 h-5" />
                   </div>
                   <div>
                     <div className="flex items-center gap-1.5 text-xs font-black text-slate-900">
                       <span>{contact.dubaiTimeLabel}</span>
                     </div>
-                    <div className="text-sm font-black text-[#7C5CFC] font-mono">{dubaiTime || "Loading..."}</div>
+                    <div className="text-sm font-black text-[#5B3DE0] font-mono">{dubaiTime || "Loading..."}</div>
                   </div>
                 </div>
-                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-700 text-[10px] font-black border border-emerald-200">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[10px] font-black border border-emerald-200">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   {contact.availability}
                 </span>
@@ -144,12 +144,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
               <div className="space-y-3.5 pt-1">
                 <div className="flex items-center justify-between p-3.5 rounded-2xl bg-white/90 border border-slate-200/80 shadow-xs">
                   <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-xl bg-purple-100/80 text-[#7C5CFC] flex items-center justify-center shrink-0">
+                    <div className="w-9 h-9 rounded-xl bg-purple-100/80 text-[#5B3DE0] flex items-center justify-center shrink-0">
                       <Mail className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Email Address</div>
-                      <a href={`mailto:${personalInfo.email}`} className="text-xs sm:text-sm font-black text-slate-800 hover:text-[#7C5CFC] transition-colors">
+                      <div className="text-[10px] font-bold text-slate-600 uppercase tracking-wider">Email Address</div>
+                      <a href={`mailto:${personalInfo.email}`} className="text-xs sm:text-sm font-black text-slate-800 hover:text-[#5B3DE0] transition-colors">
                         {personalInfo.email}
                       </a>
                     </div>
@@ -159,7 +159,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                     onClick={handleCopyEmail}
                     aria-label={copiedEmail ? "Email copied" : "Copy email"}
                     title="Copy Email"
-                    className="p-2 rounded-xl text-slate-400 hover:text-[#7C5CFC] hover:bg-purple-50 transition-colors cursor-pointer"
+                    className="p-2 rounded-xl text-slate-600 hover:text-[#5B3DE0] hover:bg-purple-50 transition-colors cursor-pointer"
                   >
                     {copiedEmail ? <Check className="w-4 h-4 text-emerald-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
                   </button>
@@ -171,7 +171,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                       <Phone className="w-4 h-4" />
                     </div>
                     <div>
-                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Direct UAE Phone</div>
+                      <div className="text-[10px] font-bold text-slate-600 uppercase tracking-wider">Direct UAE Phone</div>
                       <a href={`tel:${personalInfo.phone}`} className="text-xs sm:text-sm font-black text-slate-800 hover:text-emerald-600 transition-colors">
                         {personalInfo.phone}
                       </a>
@@ -182,7 +182,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                     onClick={handleCopyPhone}
                     aria-label={copiedPhone ? "Phone copied" : "Copy phone"}
                     title="Copy Phone"
-                    className="p-2 rounded-xl text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 transition-colors cursor-pointer"
+                    className="p-2 rounded-xl text-slate-600 hover:text-emerald-800 hover:bg-emerald-50 transition-colors cursor-pointer"
                   >
                     {copiedPhone ? <Check className="w-4 h-4 text-emerald-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
                   </button>
@@ -190,7 +190,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
 
                 <button
                   onClick={() => openWhatsApp()}
-                  className="w-full py-3 px-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-black shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 transition-all hover:scale-[1.01] cursor-pointer"
+                  className="w-full py-3 px-4 rounded-2xl bg-[#047857] hover:bg-[#036348] text-white text-xs font-black shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 transition-all hover:scale-[1.01] cursor-pointer"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>Start WhatsApp Chat ({personalInfo.phone})</span>
@@ -205,7 +205,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
               </div>
 
               <div>
-                <div className="text-[11px] font-extrabold text-slate-400 uppercase tracking-wider mb-2">Quick Inquiry Templates:</div>
+                <div className="text-[11px] font-extrabold text-slate-600 uppercase tracking-wider mb-2">Quick Inquiry Templates:</div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   {contact.presets.map((preset) => (
                     <button
@@ -238,7 +238,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                       setSubmitted(false);
                       setFormData({ name: "", email: "", subject: contact.defaultSubject, message: "" });
                     }}
-                    className="text-xs font-extrabold text-[#7C5CFC] hover:underline cursor-pointer"
+                    className="text-xs font-extrabold text-[#5B3DE0] hover:underline cursor-pointer"
                   >
                     Send another message
                   </button>
@@ -259,7 +259,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                         placeholder={contact.formNamePlaceholder}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#7C5CFC] focus:bg-white transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#5B3DE0] focus:bg-white transition-all"
                       />
                     </div>
                     <div>
@@ -275,7 +275,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                         placeholder={contact.formEmailPlaceholder}
-                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#7C5CFC] focus:bg-white transition-all"
+                        className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#5B3DE0] focus:bg-white transition-all"
                       />
                     </div>
                   </div>
@@ -290,7 +290,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                       autoComplete="off"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#7C5CFC] focus:bg-white transition-all"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#5B3DE0] focus:bg-white transition-all"
                     />
                   </div>
                   <div>
@@ -305,18 +305,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder={contact.formMessagePlaceholder}
-                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#7C5CFC] focus:bg-white transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#5B3DE0] focus:bg-white transition-all resize-none"
                     />
                   </div>
                   {formError && (
                     <p className="text-xs font-semibold text-rose-600">{formError}</p>
                   )}
                   <div className="flex items-center justify-between pt-2">
-                    <span className="text-[11px] text-slate-400 font-semibold">{contact.responseSla}</span>
+                    <span className="text-[11px] text-slate-600 font-semibold">{contact.responseSla}</span>
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="px-6 py-3 rounded-xl bg-[#7C5CFC] hover:bg-[#6842F5] text-white text-xs font-black shadow-lg shadow-purple-500/20 flex items-center gap-2 transition-all hover:scale-[1.02] cursor-pointer disabled:opacity-50"
+                      className="px-6 py-3 rounded-xl bg-[#5B3DE0] hover:bg-[#4A2EC4] text-white text-xs font-black shadow-lg shadow-purple-500/20 flex items-center gap-2 transition-all hover:scale-[1.02] cursor-pointer disabled:opacity-50"
                     >
                       {isSubmitting ? (
                         <span>Sending Message...</span>

@@ -36,7 +36,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenContact 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-[#7C5CFC] text-xs font-extrabold uppercase tracking-widest mb-3">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-100 text-[#5B3DE0] text-xs font-extrabold uppercase tracking-widest mb-3">
               <Sparkles className="w-3.5 h-3.5" />
               <span>{sections.projects.badge}</span>
             </div>
@@ -53,7 +53,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenContact 
                 onClick={() => setActiveCategory(cat)}
                 className={`px-4 py-2.5 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
                   activeCategory === cat
-                    ? "bg-[#7C5CFC] text-white shadow-lg shadow-purple-500/25 ring-2 ring-purple-200"
+                    ? "bg-[#5B3DE0] text-white shadow-lg shadow-purple-500/25 ring-2 ring-purple-200"
                     : "bg-white/80 backdrop-blur-md text-slate-600 hover:bg-white hover:text-slate-900 border border-slate-200/80 shadow-xs"
                 }`}
               >
@@ -63,7 +63,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenContact 
 
             <button
               onClick={onOpenContact}
-              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-purple-50 hover:bg-purple-100 text-[#7C5CFC] text-xs font-black transition-all cursor-pointer border border-purple-200/80 shadow-xs group"
+              className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2.5 rounded-2xl bg-purple-50 hover:bg-purple-100 text-[#5B3DE0] text-xs font-black transition-all cursor-pointer border border-purple-200/80 shadow-xs group"
             >
               <span>{ctas.startProject}</span>
               <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -147,7 +147,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenContact 
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/30 to-transparent flex flex-col justify-end p-4">
                       {primaryMetric && (
                         <div className="self-start mb-1">
-                          <span className="px-2.5 py-0.5 rounded-full bg-[#7C5CFC] text-white text-[10px] font-black tracking-wide shadow-sm flex items-center gap-1">
+                          <span className="px-2.5 py-0.5 rounded-full bg-[#5B3DE0] text-white text-[10px] font-black tracking-wide shadow-sm flex items-center gap-1">
                             <Zap className="w-2.5 h-2.5" />
                             {primaryMetric.value} {primaryMetric.label}
                           </span>
@@ -161,14 +161,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenContact 
                       href={`/projects/${project.id}`}
                       className="px-3.5 py-2 rounded-xl bg-white text-slate-900 text-xs font-black shadow-lg flex items-center gap-1.5 transition-transform hover:scale-105 cursor-pointer"
                     >
-                      <Eye className="w-3.5 h-3.5 text-[#7C5CFC]" />
+                      <Eye className="w-3.5 h-3.5 text-[#5B3DE0]" />
                       <span>Case Study</span>
                     </Link>
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="px-3.5 py-2 rounded-xl bg-[#7C5CFC] text-white text-xs font-black shadow-lg flex items-center gap-1.5 transition-transform hover:scale-105 cursor-pointer"
+                      className="px-3.5 py-2 rounded-xl bg-[#5B3DE0] text-white text-xs font-black shadow-lg flex items-center gap-1.5 transition-transform hover:scale-105 cursor-pointer"
                     >
                       <ExternalLink className="w-3.5 h-3.5" />
                       <span>Live Site</span>
@@ -178,11 +178,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenContact 
 
                 <div className="p-6 flex flex-col justify-between flex-1 space-y-4">
                   <div>
-                    <div className="flex items-center justify-between text-[11px] font-bold text-slate-400 mb-1.5">
-                      <span className="text-[#7C5CFC] font-extrabold uppercase tracking-wider">{project.category}</span>
+                    <div className="flex items-center justify-between text-[11px] font-bold text-slate-600 mb-1.5">
+                      <span className="text-[#5B3DE0] font-extrabold uppercase tracking-wider">{project.category}</span>
                       <span>{project.fullCaseStudy.role.split("&")[0]}</span>
                     </div>
-                    <h3 className="text-xl font-black text-slate-900 group-hover:text-[#7C5CFC] transition-colors leading-tight mb-1">
+                    <h3 className="text-xl font-black text-slate-900 group-hover:text-[#5B3DE0] transition-colors leading-tight mb-1">
                       {project.title}
                     </h3>
                     <p className="text-xs font-bold text-slate-700 mb-2">{project.subtitle}</p>
@@ -202,7 +202,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenContact 
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2.5 py-1 rounded-lg bg-purple-50/80 text-[#7C5CFC] text-[10px] font-bold border border-purple-100/80"
+                        className="px-2.5 py-1 rounded-lg bg-purple-50/80 text-[#5B3DE0] text-[10px] font-bold border border-purple-100/80"
                       >
                         {tag}
                       </span>
@@ -212,16 +212,16 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenContact 
                   <div className="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
                     <button
                       onClick={() => setSelectedProject(project)}
-                      className="text-slate-600 hover:text-[#7C5CFC] transition-colors flex items-center gap-1 cursor-pointer"
+                      className="text-slate-600 hover:text-[#5B3DE0] transition-colors flex items-center gap-1 cursor-pointer"
                     >
-                      <Eye className="w-3.5 h-3.5 text-[#7C5CFC]" />
+                      <Eye className="w-3.5 h-3.5 text-[#5B3DE0]" />
                       <span>View Full Blueprint</span>
                     </button>
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#7C5CFC] hover:text-[#5833eb] transition-colors flex items-center gap-1 group/link"
+                      className="text-[#5B3DE0] hover:text-[#4A2EC4] transition-colors flex items-center gap-1 group/link"
                     >
                       <span>Visit URL</span>
                       <ExternalLink className="w-3.5 h-3.5 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />

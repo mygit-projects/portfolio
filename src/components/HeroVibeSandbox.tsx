@@ -62,7 +62,7 @@ export const HeroVibeSandbox: React.FC = () => {
               }}
               className={`px-1 py-1 rounded-lg text-[9px] font-bold transition-all truncate text-center cursor-pointer ${
                 isActive
-                  ? "bg-[#7C5CFC] text-white shadow-sm shadow-purple-500/40 font-extrabold"
+                  ? "bg-[#5B3DE0] text-white shadow-sm shadow-purple-500/40 font-extrabold"
                   : "bg-slate-800/80 text-slate-400 hover:text-slate-200 hover:bg-slate-800"
               }`}
             >
@@ -92,7 +92,7 @@ export const HeroVibeSandbox: React.FC = () => {
           {[45, 80, 35, 95, 60, 85, 50, 100, 75, 90, 65, 95, 40, 70, 90, 60, 85].map((val, i) => (
             <span
               key={i}
-              className="w-1 bg-gradient-to-t from-[#7C5CFC] via-[#9E86FF] to-cyan-300 rounded-full transition-all duration-300"
+              className="w-1 bg-gradient-to-t from-[#5B3DE0] via-[#9E86FF] to-cyan-300 rounded-full transition-all duration-300"
               style={{
                 height: `${isPlaying ? (val * ((i % 3) + 1)) % 100 : val}%`,
                 opacity: 0.85,

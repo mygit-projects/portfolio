@@ -37,7 +37,7 @@ export const HeroSpeedDial: React.FC = () => {
           onClick={runAudit}
           disabled={isRunningAudit}
           title="Run Live Performance Audit"
-          className="px-2 py-0.5 rounded-md bg-purple-50 hover:bg-purple-100 text-[#7C5CFC] text-[9px] font-bold flex items-center gap-1 transition-colors cursor-pointer"
+          className="px-2 py-0.5 rounded-md bg-purple-50 hover:bg-purple-100 text-[#5B3DE0] text-[9px] font-bold flex items-center gap-1 transition-colors cursor-pointer"
         >
           <RotateCw className={`w-2.5 h-2.5 ${isRunningAudit ? "animate-spin" : ""}`} />
           <span>{isRunningAudit ? "Testing..." : "Audit"}</span>
@@ -59,10 +59,10 @@ export const HeroSpeedDial: React.FC = () => {
 
         <div className="p-2 rounded-xl bg-gradient-to-br from-purple-50 to-indigo-50/60 border border-purple-100/80 text-center">
           <div className="text-[9px] font-bold uppercase tracking-wider text-purple-800 flex items-center justify-center gap-1">
-            <Zap className="w-2.5 h-2.5 text-[#7C5CFC]" />
+            <Zap className="w-2.5 h-2.5 text-[#5B3DE0]" />
             <span>CRO Lift</span>
           </div>
-          <div className="text-xl font-black text-[#7C5CFC] tracking-tight mt-0.5">{speedDial.croLift}</div>
+          <div className="text-xl font-black text-[#5B3DE0] tracking-tight mt-0.5">{speedDial.croLift}</div>
           <p className="text-[8px] font-semibold text-purple-700">{speedDial.croCaption}</p>
         </div>
       </div>
@@ -77,10 +77,10 @@ export const HeroSpeedDial: React.FC = () => {
         </div>
         <div className="flex items-center justify-between">
           <span className="flex items-center gap-1 font-medium">
-            <CheckCircle2 className="w-3 h-3 text-[#7C5CFC]" />
+            <CheckCircle2 className="w-3 h-3 text-[#5B3DE0]" />
             {speedDial.seoLabel}
           </span>
-          <span className="font-bold text-[#7C5CFC]">{speedDial.seoValue}</span>
+          <span className="font-bold text-[#5B3DE0]">{speedDial.seoValue}</span>
         </div>
       </div>
     </div>

@@ -120,7 +120,7 @@ export const portfolioData: PortfolioContent = {
         detailBody:
           "Driven by technical SEO audits, Schema.org entity graphs, Core Web Vitals optimization, and targeted Meta/Google Ads.",
         icon: "Zap",
-        accentClass: "text-emerald-600 group-hover:text-emerald-600 hover:border-emerald-300",
+        accentClass: "text-emerald-800 group-hover:text-emerald-800 hover:border-emerald-300",
       },
     ],
     hangingCards: {
@@ -193,7 +193,7 @@ export const portfolioData: PortfolioContent = {
         "E-Commerce Store Usability Audits",
       ],
       color: "from-purple-500/10 to-indigo-500/10",
-      accent: "#7C5CFC",
+      accent: "#5B3DE0",
     },
     {
       id: "vibe-coding",
@@ -407,7 +407,7 @@ export const portfolioData: PortfolioContent = {
       desc: "Deep-dive analysis of business objectives, customer persona demographics, competitor benchmarks, and conversion baseline KPIs.",
       icon: "Compass",
       color: "from-purple-500 to-indigo-600",
-      accentBg: "bg-purple-500/10 text-[#7C5CFC]",
+      accentBg: "bg-purple-500/10 text-[#5B3DE0]",
       borderColor: "border-purple-300 shadow-purple-500/20",
       deliverables: [
         "Conversion Baseline & KPI Audit",
@@ -458,7 +458,7 @@ export const portfolioData: PortfolioContent = {
       toolsUsed: ["Figma", "Tailwind CSS", "Motion / Framer", "Lucide Icons"],
       duration: "3–5 Days",
       keyMetric: "WCAG AA Compliant & <16px Spacing Math",
-      codeOrArtifact: 'export const theme = { brand: "#7C5CFC", surface: "#F8F9FD", radius: "1.5rem" };',
+      codeOrArtifact: 'export const theme = { brand: "#5B3DE0", surface: "#F8F9FD", radius: "1.5rem" };',
     },
     {
       step: "04",
@@ -487,7 +487,7 @@ export const portfolioData: PortfolioContent = {
       desc: "Rigorous cross-device testing, Core Web Vitals optimization (<0.6s LCP), Schema.org indexing, and continuous conversion tuning.",
       icon: "Rocket",
       color: "from-emerald-500 to-teal-600",
-      accentBg: "bg-emerald-500/10 text-emerald-600",
+      accentBg: "bg-emerald-500/10 text-emerald-800",
       borderColor: "border-emerald-300 shadow-emerald-500/20",
       deliverables: [
         "100/100 Google PageSpeed Optimization",
@@ -585,8 +585,8 @@ export const portfolioData: PortfolioContent = {
     blurb:
       "Extensive experience managing enterprise platforms, cross-border marketing funnels, and high-conversion booking interfaces for major UAE operators.",
     stats: [
-      { label: "Total Experience", value: "15+ Years", valueClass: "text-[#7C5CFC]" },
-      { label: "Dubai Market Tenacity", value: "2022 — Present", valueClass: "text-emerald-600" },
+      { label: "Total Experience", value: "15+ Years", valueClass: "text-[#5B3DE0]" },
+      { label: "Dubai Market Tenacity", value: "2022 — Present", valueClass: "text-emerald-800" },
       { label: "Average CRO Increase", value: "+30% to +45%", valueClass: "text-slate-900" },
     ],
   },

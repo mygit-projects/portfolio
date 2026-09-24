@@ -38,7 +38,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose, onOpenContact
           <div className="flex items-center gap-2">
             <button
               onClick={handlePrint}
-              className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-purple-50 text-slate-700 hover:text-[#7C5CFC] text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+              className="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-purple-50 text-slate-700 hover:text-[#5B3DE0] text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Print / PDF</span>
@@ -58,7 +58,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose, onOpenContact
             <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
               <div>
                 <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight uppercase">{personalInfo.name}</h1>
-                <h2 className="text-sm sm:text-base font-extrabold text-[#7C5CFC] uppercase tracking-wider mt-0.5">
+                <h2 className="text-sm sm:text-base font-extrabold text-[#5B3DE0] uppercase tracking-wider mt-0.5">
                   {personalInfo.cvModalTitle}
                 </h2>
                 <p className="text-xs font-semibold text-slate-500 mt-0.5">{personalInfo.cvModalSubtitle}</p>
@@ -117,7 +117,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose, onOpenContact
                   <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
                     <div>
                       <span className="text-xs sm:text-sm font-extrabold text-slate-900">{exp.title}</span>
-                      <span className="text-xs font-bold text-[#7C5CFC]"> | {exp.company}</span>
+                      <span className="text-xs font-bold text-[#5B3DE0]"> | {exp.company}</span>
                     </div>
                     <div className="text-[11px] font-bold text-slate-500">
                       {exp.period} • {exp.location}
@@ -142,7 +142,7 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose, onOpenContact
                 {education.map((edu) => (
                   <div key={edu.id}>
                     <p className="font-bold text-slate-900">{edu.degree}</p>
-                    <p className="text-[#7C5CFC] font-semibold">{edu.field}</p>
+                    <p className="text-[#5B3DE0] font-semibold">{edu.field}</p>
                     <p className="text-[11px] text-slate-500">
                       {edu.institution} - {edu.location}
                     </p>
@@ -202,13 +202,13 @@ export const CvModal: React.FC<CvModalProps> = ({ isOpen, onClose, onOpenContact
                 onClose();
                 onOpenContact();
               }}
-              className="px-4 py-2 rounded-xl bg-purple-100 hover:bg-purple-200 text-[#7C5CFC] font-bold text-xs transition-colors"
+              className="px-4 py-2 rounded-xl bg-purple-100 hover:bg-purple-200 text-[#5B3DE0] font-bold text-xs transition-colors"
             >
               Contact {personalInfo.name}
             </button>
             <button
               onClick={handlePrint}
-              className="px-4 py-2 rounded-xl bg-[#7C5CFC] hover:bg-[#6842f5] text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-purple-500/20"
+              className="px-4 py-2 rounded-xl bg-[#5B3DE0] hover:bg-[#4A2EC4] text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-purple-500/20"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Print / Download CV</span>

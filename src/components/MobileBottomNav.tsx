@@ -31,7 +31,7 @@ export function MobileBottomNav({ activeSection, hashPrefix, onOpenCvModal }: Mo
               href={`${hashPrefix}${item.href}`}
               aria-current={isActive ? "page" : undefined}
               className={`flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-1.5 transition-colors ${
-                isActive ? "bg-purple-50 text-[#7C5CFC]" : "text-slate-500 hover:text-slate-800"
+                isActive ? "bg-purple-50 text-[#5B3DE0]" : "text-slate-500 hover:text-slate-800"
               }`}
             >
               <Icon className={`pointer-events-none h-[18px] w-[18px] ${isActive ? "stroke-[2.25]" : "stroke-[1.75]"}`} />
@@ -45,12 +45,12 @@ export function MobileBottomNav({ activeSection, hashPrefix, onOpenCvModal }: Mo
         <button
           type="button"
           onClick={onOpenCvModal}
-          className="flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-1.5 text-slate-500 transition-colors hover:bg-purple-50 hover:text-[#7C5CFC]"
+          className="flex min-w-0 flex-1 flex-col items-center gap-0.5 rounded-xl px-1 py-1.5 text-slate-500 transition-colors hover:bg-purple-50 hover:text-[#5B3DE0]"
         >
-          <span className="pointer-events-none flex h-[18px] w-[18px] items-center justify-center rounded-md bg-[#7C5CFC] text-white shadow-sm shadow-purple-500/30">
+          <span className="pointer-events-none flex h-[18px] w-[18px] items-center justify-center rounded-md bg-[#5B3DE0] text-white shadow-sm shadow-purple-500/30">
             <FileText className="h-3 w-3" />
           </span>
-          <span className="truncate text-[10px] font-extrabold leading-none text-[#7C5CFC]">CV</span>
+          <span className="truncate text-[10px] font-extrabold leading-none text-[#5B3DE0]">CV</span>
         </button>
       </div>
     </nav>

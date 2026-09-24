@@ -98,7 +98,11 @@ export const Footer: React.FC = () => {
             <form onSubmit={handleSubscribe} className="space-y-2">
               <div className="relative">
                 <input
+                  id="footer-newsletter-email"
+                  name="email"
                   type="email"
+                  autoComplete="email"
+                  aria-label="Email address for newsletter"
                   value={newsletterEmail}
                   onChange={(e) => setNewsletterEmail(e.target.value)}
                   placeholder="Your email address"

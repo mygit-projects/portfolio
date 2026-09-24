@@ -154,8 +154,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                       </a>
                     </div>
                   </div>
-                  <button onClick={handleCopyEmail} className="p-2 rounded-xl text-slate-400 hover:text-[#7C5CFC] hover:bg-purple-50 transition-colors cursor-pointer" title="Copy Email">
-                    {copiedEmail ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                  <button
+                    type="button"
+                    onClick={handleCopyEmail}
+                    aria-label={copiedEmail ? "Email copied" : "Copy email"}
+                    title="Copy Email"
+                    className="p-2 rounded-xl text-slate-400 hover:text-[#7C5CFC] hover:bg-purple-50 transition-colors cursor-pointer"
+                  >
+                    {copiedEmail ? <Check className="w-4 h-4 text-emerald-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
                   </button>
                 </div>
 
@@ -171,8 +177,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                       </a>
                     </div>
                   </div>
-                  <button onClick={handleCopyPhone} className="p-2 rounded-xl text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 transition-colors cursor-pointer" title="Copy Phone">
-                    {copiedPhone ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                  <button
+                    type="button"
+                    onClick={handleCopyPhone}
+                    aria-label={copiedPhone ? "Phone copied" : "Copy phone"}
+                    title="Copy Phone"
+                    className="p-2 rounded-xl text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 transition-colors cursor-pointer"
+                  >
+                    {copiedPhone ? <Check className="w-4 h-4 text-emerald-600" aria-hidden="true" /> : <Copy className="w-4 h-4" aria-hidden="true" />}
                   </button>
                 </div>
 
@@ -235,9 +247,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-xs font-extrabold text-slate-700 mb-1.5">Your Name *</label>
+                      <label htmlFor="contact-name" className="block text-xs font-extrabold text-slate-700 mb-1.5">
+                        Your Name *
+                      </label>
                       <input
+                        id="contact-name"
+                        name="name"
                         type="text"
+                        autoComplete="name"
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -246,9 +263,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                       />
                     </div>
                     <div>
-                      <label className="block text-xs font-extrabold text-slate-700 mb-1.5">Email Address *</label>
+                      <label htmlFor="contact-email" className="block text-xs font-extrabold text-slate-700 mb-1.5">
+                        Email Address *
+                      </label>
                       <input
+                        id="contact-email"
+                        name="email"
                         type="email"
+                        autoComplete="email"
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -258,17 +280,26 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ isModal = false 
                     </div>
                   </div>
                   <div>
-                    <label className="block text-xs font-extrabold text-slate-700 mb-1.5">Subject / Topic</label>
+                    <label htmlFor="contact-subject" className="block text-xs font-extrabold text-slate-700 mb-1.5">
+                      Subject / Topic
+                    </label>
                     <input
+                      id="contact-subject"
+                      name="subject"
                       type="text"
+                      autoComplete="off"
                       value={formData.subject}
                       onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                       className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#7C5CFC] focus:bg-white transition-all"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-extrabold text-slate-700 mb-1.5">Message & Requirements *</label>
+                    <label htmlFor="contact-message" className="block text-xs font-extrabold text-slate-700 mb-1.5">
+                      Message & Requirements *
+                    </label>
                     <textarea
+                      id="contact-message"
+                      name="message"
                       rows={4}
                       required
                       value={formData.message}

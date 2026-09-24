@@ -1,6 +1,8 @@
+import { revalidatePath } from "next/cache";
 import { sectionSchemas } from "@/lib/cms/schemas";
 import { revalidatePortfolioPaths } from "@/lib/cms/revalidate";
 import type { SectionKey, SectionMap } from "@/lib/cms/sections";
+import { refreshSitemapFromProjects } from "@/lib/cms/sitemap";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export async function applySectionsAsEngine(payload: Partial<SectionMap>): Promise<void> {
@@ -27,4 +29,9 @@ export async function applySectionsAsEngine(payload: Partial<SectionMap>): Promi
   }
 
   revalidatePortfolioPaths(payload);
+  if (payload.projects) {
+    await refreshSitemapFromProjects(payload.projects.items);
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/admin/sitemap");
+  }
 }

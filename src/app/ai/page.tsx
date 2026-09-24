@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { getPortfolio } from "@/content/getPortfolio";
 import { buildCitationClaims } from "@/lib/ai-engine/claims";
-import { getSiteUrl } from "@/lib/site";
+import { getPublicSiteUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +11,7 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: `${portfolio.personalInfo.name} — AI citation profile`,
     description: portfolio.personalInfo.bio.slice(0, 160),
-    alternates: { canonical: `${getSiteUrl()}/ai` },
+    alternates: { canonical: `${getPublicSiteUrl()}/ai` },
     robots: { index: true, follow: true },
   };
 }

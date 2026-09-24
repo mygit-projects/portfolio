@@ -1,11 +1,18 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { getPortfolioFresh } from "@/content/getPortfolio";
 import { pinFieldPaths } from "@/lib/ai-engine/fieldPins";
 import { policyPathsFromSections } from "@/lib/ai-engine/policy";
 import { sectionSchemas } from "@/lib/cms/schemas";
 import { revalidatePortfolioPaths } from "@/lib/cms/revalidate";
 import type { SectionKey, SectionMap } from "@/lib/cms/sections";
+import {
+  buildSitemapEntries,
+  refreshSitemapFromProjects,
+  saveSitemapSnapshot,
+  type SitemapEntry,
+} from "@/lib/cms/sitemap";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export type ActionResult = { ok: true } | { ok: false; error: string };
@@ -62,7 +69,39 @@ export async function saveSections(
   }
 
   revalidatePortfolioPaths(payload);
+  if (payload.projects) {
+    await refreshSitemapFromProjects(payload.projects.items);
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/admin/sitemap");
+  }
   return { ok: true };
+}
+
+export async function generateSitemap(): Promise<
+  { ok: true; url: string; generatedAt: string; entries: SitemapEntry[] } | { ok: false; error: string }
+> {
+  const auth = await requireAdmin();
+  if (!auth.supabase) {
+    return { ok: false, error: auth.error };
+  }
+
+  const {
+    data: { user },
+  } = await auth.supabase.auth.getUser();
+
+  try {
+    const portfolio = await getPortfolioFresh();
+    const snapshot = await saveSitemapSnapshot(buildSitemapEntries(portfolio), new Date(), user?.id);
+    revalidatePath("/sitemap.xml");
+    revalidatePath("/admin/sitemap");
+    revalidatePath("/robots.txt");
+    return { ok: true, ...snapshot };
+  } catch (error) {
+    return {
+      ok: false,
+      error: error instanceof Error ? error.message : "Could not generate the sitemap.",
+    };
+  }
 }
 
 export async function signOutAdmin(): Promise<ActionResult> {

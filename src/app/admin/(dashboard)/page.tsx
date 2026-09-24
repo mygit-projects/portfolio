@@ -5,6 +5,7 @@ import { isSupabaseConfigured } from "@/lib/supabase/env";
 
 const LINKS = [
   ["/admin/seo-optimizer", "SEO Engine", "SEO / AEO / GEO scores, FAQs, Google insights"],
+  ["/admin/sitemap", "XML Sitemap", "Generate sitemap.xml and copy the GSC URL"],
   ["/admin/settings", "Settings", "Identity, nav, CTAs, footer"],
   ["/admin/hero", "Hero", "Stats, hanging cards, widgets"],
   ["/admin/services", "Services", "Cards and estimator"],

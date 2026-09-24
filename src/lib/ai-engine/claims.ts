@@ -1,8 +1,8 @@
 import type { CitationClaim, PortfolioContent } from "@/content/types";
-import { getSiteUrl } from "@/lib/site";
+import { getPublicSiteUrl } from "@/lib/site";
 
 export function buildCitationClaims(portfolio: PortfolioContent): CitationClaim[] {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getPublicSiteUrl();
   const updated = new Date().toISOString().slice(0, 10);
   const claims: CitationClaim[] = [
     {
@@ -56,7 +56,7 @@ export function patchInventedMetrics(text: string, allowed: string[]): string[] 
 }
 
 export function buildLlmsTxt(portfolio: PortfolioContent): string {
-  const siteUrl = getSiteUrl();
+  const siteUrl = getPublicSiteUrl();
   const claims = buildCitationClaims(portfolio);
   return [
     `# ${portfolio.personalInfo.name}`,

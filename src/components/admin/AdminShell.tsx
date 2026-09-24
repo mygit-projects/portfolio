@@ -11,6 +11,7 @@ import {
   Layers3,
   LayoutDashboard,
   LogOut,
+  Map,
   Menu,
   MessageSquareQuote,
   Search,
@@ -27,6 +28,7 @@ import { SeoFieldScoreProvider } from "./SeoFieldChips";
 const NAV = [
   { href: "/admin", label: "Overview", icon: LayoutDashboard },
   { href: "/admin/seo-optimizer", label: "SEO Engine", icon: Search },
+  { href: "/admin/sitemap", label: "XML Sitemap", icon: Map },
   { href: "/admin/settings", label: "Settings", icon: Settings },
   { href: "/admin/hero", label: "Hero", icon: Sparkles },
   { href: "/admin/services", label: "Services", icon: Layers3 },

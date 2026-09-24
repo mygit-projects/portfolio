@@ -5,6 +5,7 @@ export function revalidatePortfolioPaths(payload: Partial<SectionMap> = {}) {
   revalidatePath("/");
   revalidatePath("/admin");
   revalidatePath("/admin/seo-optimizer");
+  revalidatePath("/admin/sitemap");
   revalidatePath("/login");
   revalidatePath("/sitemap.xml");
   revalidatePath("/projects");

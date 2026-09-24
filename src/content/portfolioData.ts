@@ -19,6 +19,9 @@ export const portfolioData: PortfolioContent = {
       "Tour booking platforms",
       "UAE web designer",
     ],
+    ga4MeasurementId: "",
+    headerHtml: "",
+    footerHtml: "",
   },
 
   personalInfo: {

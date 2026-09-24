@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import type { ReactNode } from "react";
+import { SiteTags } from "@/components/SiteTags";
 import { StripExtensionAttrs } from "@/components/StripExtensionAttrs";
 import { getAboveTheFoldPortfolio } from "@/content/getPortfolio";
 import { getSiteUrl } from "@/lib/site";
@@ -52,7 +53,9 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({ children }: { children: ReactNode }) {
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const portfolio = await getAboveTheFoldPortfolio();
+
   return (
     <html lang="en" className={`${plusJakarta.variable} scroll-smooth`} suppressHydrationWarning>
       <body
@@ -60,6 +63,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         suppressHydrationWarning
       >
         <StripExtensionAttrs />
+        <SiteTags
+          ga4MeasurementId={portfolio.site.ga4MeasurementId}
+          headerHtml={portfolio.site.headerHtml}
+          footerHtml={portfolio.site.footerHtml}
+        />
         {children}
       </body>
     </html>

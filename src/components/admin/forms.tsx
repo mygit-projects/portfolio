@@ -43,7 +43,7 @@ export function SettingsForm({
 
   return (
     <div className="space-y-5">
-      <PageIntro title="Settings" copy="Site metadata, identity, navigation, CTAs, footer, and driving card." />
+      <PageIntro title="Settings" copy="Site metadata, tracking tags, identity, navigation, CTAs, footer, and driving card." />
       <Notice status={form.status} />
       <Panel title="Site metadata">
         <Grid>
@@ -64,6 +64,35 @@ export function SettingsForm({
           </Field>
           <Field label="Keywords" seoPath="site.keywords">
             <LineList value={form.value.site.keywords} onChange={(keywords) => form.setValue({ ...form.value, site: { ...form.value.site, keywords } })} />
+          </Field>
+        </Grid>
+      </Panel>
+
+      <Panel title="Tracking and tags">
+        <p className="mb-3 text-sm text-slate-500">
+          These run on the public site only, not in the CMS. Paste a GA4 Measurement ID for Analytics. Use header/footer for GTM, Meta Pixel, or other embed tags.
+        </p>
+        <Grid>
+          <Field label="GA4 Measurement ID" hint="Example: G-XXXXXXXX. Do not paste the full install script here.">
+            <TextInput
+              value={form.value.site.ga4MeasurementId ?? ""}
+              onChange={(ga4MeasurementId) => form.setValue({ ...form.value, site: { ...form.value.site, ga4MeasurementId } })}
+              placeholder="G-XXXXXXXX"
+            />
+          </Field>
+          <Field label="Header tags" hint="HTML for the document head: GTM script, verification tags, extra meta or link tags.">
+            <TextArea
+              value={form.value.site.headerHtml ?? ""}
+              onChange={(headerHtml) => form.setValue({ ...form.value, site: { ...form.value.site, headerHtml } })}
+              rows={6}
+            />
+          </Field>
+          <Field label="Footer tags" hint="HTML before the closing body tag, such as a GTM noscript snippet.">
+            <TextArea
+              value={form.value.site.footerHtml ?? ""}
+              onChange={(footerHtml) => form.setValue({ ...form.value, site: { ...form.value.site, footerHtml } })}
+              rows={6}
+            />
           </Field>
         </Grid>
       </Panel>

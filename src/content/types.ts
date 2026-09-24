@@ -212,6 +212,9 @@ export interface SiteMeta {
   ogDescription: string;
   locale: string;
   keywords: string[];
+  ga4MeasurementId: string;
+  headerHtml: string;
+  footerHtml: string;
 }
 
 export interface SectionCopy {

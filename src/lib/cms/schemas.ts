@@ -11,6 +11,9 @@ export const siteSchema = z.object({
   ogDescription: z.string(),
   locale: z.string(),
   keywords: stringList,
+  ga4MeasurementId: z.string().optional().default(""),
+  headerHtml: z.string().optional().default(""),
+  footerHtml: z.string().optional().default(""),
 });
 
 export const personalInfoSchema = z.object({

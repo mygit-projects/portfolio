@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { Check } from "lucide-react";
 import { saveSections } from "@/app/admin/actions";
 import type { AiAuditMetrics, FaqItem, GoogleInsightSummary, PortfolioContent } from "@/content/types";
 import type { SeoEngineLogRow } from "@/lib/ai-engine/engineLog";
@@ -90,8 +91,21 @@ export function SeoOptimizerClient({
   const [ga4PropertyId, setGa4PropertyId] = useState(connection.ga4PropertyId ?? "");
   const [gbpAccountName, setGbpAccountName] = useState(connection.gbpAccountName ?? "");
   const [gbpLocationName, setGbpLocationName] = useState(connection.gbpLocationName ?? "");
+  const [savedGoogle, setSavedGoogle] = useState({
+    gscSiteUrl: connection.gscSiteUrl ?? "",
+    ga4PropertyId: connection.ga4PropertyId ?? "",
+    gbpAccountName: connection.gbpAccountName ?? "",
+    gbpLocationName: connection.gbpLocationName ?? "",
+  });
   const [llmProbes, setLlmProbes] = useState<LlmProbeResult[] | null>(null);
   const geminiProbe = llmProbes?.find((item) => item.provider === "gemini");
+  const selectedGoogleCount = [gscSiteUrl, ga4PropertyId, gbpAccountName, gbpLocationName].filter(Boolean).length;
+  const googleSelectionSaved =
+    selectedGoogleCount > 0 &&
+    gscSiteUrl === savedGoogle.gscSiteUrl &&
+    ga4PropertyId === savedGoogle.ga4PropertyId &&
+    gbpAccountName === savedGoogle.gbpAccountName &&
+    gbpLocationName === savedGoogle.gbpLocationName;
   const [options, setOptions] = useState<{
     gscSites: Array<{ siteUrl: string }>;
     ga4Properties: Array<{ id: string; name: string }>;
@@ -218,44 +232,94 @@ export function SeoOptimizerClient({
   }
 
   async function loadOptions() {
-    const response = await fetch("/api/integrations/google/options");
-    const payload = (await response.json()) as {
-      ok: boolean;
-      gscSites?: Array<{ siteUrl: string }>;
-      ga4Properties?: Array<{ id: string; name: string }>;
-      gbpAccounts?: Array<{ name: string; title: string }>;
-      gbpLocations?: Array<{ name: string; title: string }>;
-      error?: string;
-    };
-    if (!payload.ok) {
-      setStatus(payload.error ?? "Could not load Google properties.");
-      return;
+    setBusy("options");
+    setStatus(null);
+    try {
+      const response = await fetch("/api/integrations/google/options");
+      const payload = (await response.json()) as {
+        ok: boolean;
+        gscSites?: Array<{ siteUrl: string }>;
+        ga4Properties?: Array<{ id: string; name: string }>;
+        gbpAccounts?: Array<{ name: string; title: string }>;
+        gbpLocations?: Array<{ name: string; title: string }>;
+        errors?: { gsc?: string | null; ga4?: string | null; gbp?: string | null };
+        error?: string;
+      };
+      if (!payload.ok) {
+        setStatus(payload.error ?? "Could not load Google properties.");
+        return;
+      }
+      setOptions({
+        gscSites: payload.gscSites ?? [],
+        ga4Properties: payload.ga4Properties ?? [],
+        gbpAccounts: payload.gbpAccounts ?? [],
+        gbpLocations: payload.gbpLocations ?? [],
+      });
+      const failures = [payload.errors?.gsc, payload.errors?.ga4, payload.errors?.gbp].filter(Boolean);
+      const gscCount = payload.gscSites?.length ?? 0;
+      setStatus(
+        failures.length
+          ? `Loaded ${gscCount} Search Console sites. ${failures.join(" ")}`
+          : gscCount
+            ? `Loaded ${gscCount} Search Console site${gscCount === 1 ? "" : "s"}. Select one, then Save properties.`
+            : "No Search Console sites were returned for this Google account.",
+      );
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Could not load Google properties.");
+    } finally {
+      setBusy(null);
     }
-    setOptions({
-      gscSites: payload.gscSites ?? [],
-      ga4Properties: payload.ga4Properties ?? [],
-      gbpAccounts: payload.gbpAccounts ?? [],
-      gbpLocations: payload.gbpLocations ?? [],
-    });
   }
 
   async function persistSelection() {
-    setBusy("select");
-    const response = await fetch("/api/integrations/google/select", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ gscSiteUrl, ga4PropertyId, gbpAccountName, gbpLocationName }),
-    });
-    const payload = (await response.json()) as { ok: boolean; gbpLocations?: Array<{ name: string; title: string }>; error?: string };
-    setBusy(null);
-    if (!payload.ok) {
-      setStatus(payload.error ?? "Could not save Google properties.");
+    if (!gscSiteUrl && !ga4PropertyId && !gbpAccountName && !gbpLocationName) {
+      setStatus("Select any available property (GSC, GA4, or GBP), then click Save properties.");
       return;
     }
-    if (payload.gbpLocations) {
-      setOptions((current) => (current ? { ...current, gbpLocations: payload.gbpLocations ?? [] } : current));
+    setBusy("select");
+    setStatus(null);
+    try {
+      const response = await fetch("/api/integrations/google/select", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          gscSiteUrl: gscSiteUrl || null,
+          ga4PropertyId: ga4PropertyId || null,
+          gbpAccountName: gbpAccountName || null,
+          gbpLocationName: gbpLocationName || null,
+        }),
+      });
+      const payload = (await response.json()) as {
+        ok: boolean;
+        gbpLocations?: Array<{ name: string; title: string }>;
+        error?: string;
+      };
+      if (!payload.ok) {
+        setStatus(payload.error ?? "Could not save Google properties.");
+        return;
+      }
+      if (payload.gbpLocations) {
+        setOptions((current) => (current ? { ...current, gbpLocations: payload.gbpLocations ?? [] } : current));
+      }
+      const nextSaved = {
+        gscSiteUrl,
+        ga4PropertyId,
+        gbpAccountName,
+        gbpLocationName,
+      };
+      setSavedGoogle(nextSaved);
+      const savedNames = [
+        gscSiteUrl && "Search Console",
+        ga4PropertyId && "GA4",
+        gbpAccountName && "GBP account",
+        gbpLocationName && "GBP location",
+      ].filter(Boolean);
+      setStatus(`Saved ${savedNames.join(", ")}. Click Refresh data to pull insights.`);
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "Could not save Google properties.");
+    } finally {
+      setBusy(null);
     }
-    setStatus("Google properties saved.");
   }
 
   async function refreshInsights() {
@@ -596,10 +660,27 @@ export function SeoOptimizerClient({
               Connect Google
             </a>
             <button type="button" onClick={() => void loadOptions()} className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-bold">
-              Load properties
+              {busy === "options" ? "Loading…" : "Load properties"}
             </button>
-            <button type="button" onClick={() => void persistSelection()} className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-bold">
-              Save properties
+            <button
+              type="button"
+              onClick={() => void persistSelection()}
+              className={`inline-flex items-center gap-1.5 rounded-xl px-4 py-2 text-sm font-bold ${
+                googleSelectionSaved
+                  ? "border border-emerald-300 bg-emerald-50 text-emerald-800"
+                  : "border border-slate-200"
+              }`}
+            >
+              {busy === "select" ? (
+                "Saving…"
+              ) : googleSelectionSaved ? (
+                <>
+                  <Check className="h-4 w-4" strokeWidth={3} />
+                  Saved
+                </>
+              ) : (
+                "Save properties"
+              )}
             </button>
             <button type="button" onClick={() => void refreshInsights()} className="rounded-xl border border-slate-200 px-4 py-2 text-sm font-bold">
               {busy === "sync" ? "Refreshing…" : "Refresh data"}
@@ -612,9 +693,15 @@ export function SeoOptimizerClient({
 
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           <label className="text-xs font-bold text-slate-500">
-            Search Console
+            <span className="inline-flex items-center gap-1">
+              Search Console
+              {gscSiteUrl && gscSiteUrl === savedGoogle.gscSiteUrl ? <Check className="h-3.5 w-3.5 text-emerald-600" strokeWidth={3} /> : null}
+            </span>
             <select value={gscSiteUrl} onChange={(event) => setGscSiteUrl(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm">
               <option value="">Select site</option>
+              {gscSiteUrl && !options?.gscSites.some((site) => site.siteUrl === gscSiteUrl) ? (
+                <option value={gscSiteUrl}>{gscSiteUrl}</option>
+              ) : null}
               {options?.gscSites.map((site) => (
                 <option key={site.siteUrl} value={site.siteUrl}>
                   {site.siteUrl}
@@ -623,9 +710,15 @@ export function SeoOptimizerClient({
             </select>
           </label>
           <label className="text-xs font-bold text-slate-500">
-            GA4 property
+            <span className="inline-flex items-center gap-1">
+              GA4 property
+              {ga4PropertyId && ga4PropertyId === savedGoogle.ga4PropertyId ? <Check className="h-3.5 w-3.5 text-emerald-600" strokeWidth={3} /> : null}
+            </span>
             <select value={ga4PropertyId} onChange={(event) => setGa4PropertyId(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm">
               <option value="">Select property</option>
+              {ga4PropertyId && !options?.ga4Properties.some((property) => property.id === ga4PropertyId) ? (
+                <option value={ga4PropertyId}>{ga4PropertyId}</option>
+              ) : null}
               {options?.ga4Properties.map((property) => (
                 <option key={property.id} value={property.id}>
                   {property.name}
@@ -634,9 +727,15 @@ export function SeoOptimizerClient({
             </select>
           </label>
           <label className="text-xs font-bold text-slate-500">
-            GBP account
+            <span className="inline-flex items-center gap-1">
+              GBP account
+              {gbpAccountName && gbpAccountName === savedGoogle.gbpAccountName ? <Check className="h-3.5 w-3.5 text-emerald-600" strokeWidth={3} /> : null}
+            </span>
             <select value={gbpAccountName} onChange={(event) => setGbpAccountName(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm">
               <option value="">Select account</option>
+              {gbpAccountName && !options?.gbpAccounts.some((account) => account.name === gbpAccountName) ? (
+                <option value={gbpAccountName}>{gbpAccountName}</option>
+              ) : null}
               {options?.gbpAccounts.map((account) => (
                 <option key={account.name} value={account.name}>
                   {account.title}
@@ -645,9 +744,15 @@ export function SeoOptimizerClient({
             </select>
           </label>
           <label className="text-xs font-bold text-slate-500">
-            GBP location
+            <span className="inline-flex items-center gap-1">
+              GBP location
+              {gbpLocationName && gbpLocationName === savedGoogle.gbpLocationName ? <Check className="h-3.5 w-3.5 text-emerald-600" strokeWidth={3} /> : null}
+            </span>
             <select value={gbpLocationName} onChange={(event) => setGbpLocationName(event.target.value)} className="mt-1 w-full rounded-xl border border-slate-200 px-3 py-2 text-sm">
               <option value="">Select location</option>
+              {gbpLocationName && !options?.gbpLocations.some((location) => location.name === gbpLocationName) ? (
+                <option value={gbpLocationName}>{gbpLocationName}</option>
+              ) : null}
               {options?.gbpLocations.map((location) => (
                 <option key={location.name} value={location.name}>
                   {location.title}
@@ -656,6 +761,7 @@ export function SeoOptimizerClient({
             </select>
           </label>
         </div>
+        {status ? <p className="text-sm font-semibold text-slate-700">{status}</p> : null}
 
         <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4 text-sm">
           <InsightStat label="Clicks" value={insights.clicks} />

@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { SiteTags } from "@/components/SiteTags";
 import { StripExtensionAttrs } from "@/components/StripExtensionAttrs";
 import { getAboveTheFoldPortfolio } from "@/content/getPortfolio";
-import { getSiteUrl } from "@/lib/site";
+import { getPublicSiteUrl } from "@/lib/site";
 import "./globals.css";
 
 export const dynamic = "force-dynamic";
@@ -19,7 +19,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export async function generateMetadata(): Promise<Metadata> {
   const portfolio = await getAboveTheFoldPortfolio();
-  const siteUrl = getSiteUrl();
+  const siteUrl = getPublicSiteUrl();
 
   return {
     metadataBase: new URL(siteUrl),

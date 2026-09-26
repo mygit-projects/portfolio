@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getPublicSiteUrl } from "@/lib/site";
+import { getPublicSiteUrl, PRODUCTION_SITE_URL } from "@/lib/site";
 import { createSupabaseAdminClient } from "@/lib/supabase/admin";
 
 export type SitemapChangeFrequency = "weekly" | "monthly";
@@ -74,7 +74,10 @@ function isSitemapEntry(value: unknown): value is SitemapEntry {
 
 function normalizeEntries(value: unknown): SitemapEntry[] {
   if (!Array.isArray(value)) return [];
-  return value.filter(isSitemapEntry);
+  return value.filter(isSitemapEntry).map((entry) => ({
+    ...entry,
+    url: entry.url.replace(/^https?:\/\/(www\.)?iamfaizan\.dev/i, PRODUCTION_SITE_URL),
+  }));
 }
 
 export async function getSitemapSnapshot(): Promise<SitemapSnapshot | null> {

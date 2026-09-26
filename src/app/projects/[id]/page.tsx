@@ -5,7 +5,7 @@ import { getPortfolio } from "@/content/getPortfolio";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ProjectCasePage } from "@/components/projects/ProjectCasePage";
 import { generateProjectJsonLd } from "@/lib/ai-engine/schemaManager";
-import { getSiteUrl } from "@/lib/site";
+import { getPublicSiteUrl } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
     return { title: "Project not found" };
   }
 
-  const siteUrl = getSiteUrl();
+  const siteUrl = getPublicSiteUrl();
   const title = `${project.title} — ${project.subtitle}`.slice(0, 60);
   const description = project.description.slice(0, 160);
   const url = `${siteUrl}/projects/${project.id}`;
@@ -57,7 +57,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <PortfolioProvider value={portfolio}>
-      <JsonLd data={generateProjectJsonLd(portfolio, project, getSiteUrl())} />
+      <JsonLd data={generateProjectJsonLd(portfolio, project, getPublicSiteUrl())} />
       <ProjectCasePage project={project} />
     </PortfolioProvider>
   );

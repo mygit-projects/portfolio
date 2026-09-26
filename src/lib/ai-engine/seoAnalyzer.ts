@@ -12,7 +12,7 @@ import type {
 } from "@/content/types";
 import { healthFromScore, type SeoDocument } from "./documents";
 import { buildSerpPreview } from "./serpPreview";
-import { getSiteUrl } from "@/lib/site";
+import { getPublicSiteUrl } from "@/lib/site";
 import type { LlmClient } from "./types";
 
 export interface LiveAuditExtras {
@@ -52,7 +52,7 @@ function scoreSeo(
   issues: AiAuditIssue[],
 ): number {
   let score = 100;
-  const serp = buildSerpPreview(document.title, document.description, `${getSiteUrl()}${document.path}`);
+  const serp = buildSerpPreview(document.title, document.description, `${getPublicSiteUrl()}${document.path}`);
 
   if (!serp.titleFits) {
     score -= 16;
@@ -250,7 +250,7 @@ export function analyzeSeoDocument(
   const aeoScore = scoreAeo(document, insights, extras, issues);
   const geoScore = scoreGeo(document, insights, extras, issues);
   const overallScore = clampScore(seoScore * 0.38 + aeoScore * 0.32 + geoScore * 0.3);
-  const serp = buildSerpPreview(document.title, document.description, `${getSiteUrl()}${document.path}`);
+  const serp = buildSerpPreview(document.title, document.description, `${getPublicSiteUrl()}${document.path}`);
 
   return {
     answerFirstScore: aeoScore,

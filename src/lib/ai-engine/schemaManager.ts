@@ -1,5 +1,5 @@
 import type { FaqItem, PortfolioContent, Project } from "@/content/types";
-import { getSiteUrl } from "@/lib/site";
+import { getPublicSiteUrl } from "@/lib/site";
 import type { JsonLdGraph, JsonLdNode } from "./types";
 
 export function personId(siteUrl: string): string {
@@ -18,7 +18,7 @@ export function faqPageId(siteUrl: string): string {
   return `${siteUrl}/#faq`;
 }
 
-export function buildPersonSchema(portfolio: PortfolioContent, siteUrl = getSiteUrl()): JsonLdNode {
+export function buildPersonSchema(portfolio: PortfolioContent, siteUrl = getPublicSiteUrl()): JsonLdNode {
   const { personalInfo, experience, skills, education } = portfolio;
   const currentRole = experience.find((item) => Boolean(item.badge)) ?? experience[0];
 
@@ -65,7 +65,7 @@ export function buildPersonSchema(portfolio: PortfolioContent, siteUrl = getSite
   };
 }
 
-export function buildProfilePageSchema(portfolio: PortfolioContent, siteUrl = getSiteUrl()): JsonLdNode {
+export function buildProfilePageSchema(portfolio: PortfolioContent, siteUrl = getPublicSiteUrl()): JsonLdNode {
   return {
     "@type": "ProfilePage",
     "@id": profilePageId(siteUrl),
@@ -89,7 +89,7 @@ export function buildProfilePageSchema(portfolio: PortfolioContent, siteUrl = ge
   };
 }
 
-export function buildWebSiteSchema(portfolio: PortfolioContent, siteUrl = getSiteUrl()): JsonLdNode {
+export function buildWebSiteSchema(portfolio: PortfolioContent, siteUrl = getPublicSiteUrl()): JsonLdNode {
   return {
     "@type": "WebSite",
     "@id": websiteId(siteUrl),
@@ -106,7 +106,7 @@ export function buildWebSiteSchema(portfolio: PortfolioContent, siteUrl = getSit
   };
 }
 
-export function buildFaqPageSchema(faqs: FaqItem[], siteUrl = getSiteUrl()): JsonLdNode | null {
+export function buildFaqPageSchema(faqs: FaqItem[], siteUrl = getPublicSiteUrl()): JsonLdNode | null {
   if (!faqs.length) {
     return null;
   }
@@ -131,7 +131,7 @@ export function buildFaqPageSchema(faqs: FaqItem[], siteUrl = getSiteUrl()): Jso
 
 export function buildTechArticleSchema(
   project: Project,
-  siteUrl = getSiteUrl(),
+  siteUrl = getPublicSiteUrl(),
 ): JsonLdNode {
   return {
     "@type": ["TechArticle", "CreativeWork"],
@@ -171,7 +171,7 @@ export function buildImageObject(url: string, caption: string): JsonLdNode {
   };
 }
 
-export function buildBreadcrumbSchema(items: Array<{ name: string; url: string }>, siteUrl = getSiteUrl()): JsonLdNode {
+export function buildBreadcrumbSchema(items: Array<{ name: string; url: string }>, siteUrl = getPublicSiteUrl()): JsonLdNode {
   return {
     "@type": "BreadcrumbList",
     "@id": `${items[items.length - 1]?.url ?? siteUrl}/#breadcrumb`,
@@ -184,7 +184,7 @@ export function buildBreadcrumbSchema(items: Array<{ name: string; url: string }
   };
 }
 
-export function buildReviewGraph(portfolio: PortfolioContent, siteUrl = getSiteUrl()): JsonLdNode[] {
+export function buildReviewGraph(portfolio: PortfolioContent, siteUrl = getPublicSiteUrl()): JsonLdNode[] {
   if (!portfolio.testimonials.length) return [];
   const rating =
     portfolio.testimonials.reduce((sum, item) => sum + item.rating, 0) / portfolio.testimonials.length;
@@ -212,7 +212,7 @@ export function buildReviewGraph(portfolio: PortfolioContent, siteUrl = getSiteU
 export function buildProjectJsonLd(
   portfolio: PortfolioContent,
   project: Project,
-  siteUrl = getSiteUrl(),
+  siteUrl = getPublicSiteUrl(),
 ): JsonLdGraph {
   return {
     "@context": "https://schema.org",
@@ -233,7 +233,7 @@ export function buildProjectJsonLd(
 
 export function generateSiteJsonLd(
   portfolio: PortfolioContent,
-  siteUrl = getSiteUrl(),
+  siteUrl = getPublicSiteUrl(),
 ): JsonLdGraph {
   const faq = buildFaqPageSchema(portfolio.faqs, siteUrl);
   return {
@@ -259,7 +259,7 @@ export function generateSiteJsonLd(
 export function generateProjectJsonLd(
   portfolio: PortfolioContent,
   project: Project,
-  siteUrl = getSiteUrl(),
+  siteUrl = getPublicSiteUrl(),
 ): JsonLdGraph {
   return buildProjectJsonLd(portfolio, project, siteUrl);
 }

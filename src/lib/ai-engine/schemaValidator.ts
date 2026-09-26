@@ -31,6 +31,9 @@ export function validateJsonLdGraph(graph: JsonLdGraph): string[] {
     if (nodeTypes.includes("Person") && !node.image) {
       issues.push("Person is missing image.");
     }
+    if (nodeTypes.includes("Person") && (node.aggregateRating || node.review)) {
+      issues.push("Person must not include aggregateRating or review (unsupported by Google rich results).");
+    }
     if ((nodeTypes.includes("TechArticle") || nodeTypes.includes("ImageObject")) && typeof node.image === "string" && !/^https?:\/\//.test(node.image)) {
       issues.push("Image URL is not absolute.");
     }

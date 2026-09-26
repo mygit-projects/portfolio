@@ -184,31 +184,6 @@ export function buildBreadcrumbSchema(items: Array<{ name: string; url: string }
   };
 }
 
-export function buildReviewGraph(portfolio: PortfolioContent, siteUrl = getPublicSiteUrl()): JsonLdNode[] {
-  if (!portfolio.testimonials.length) return [];
-  const rating =
-    portfolio.testimonials.reduce((sum, item) => sum + item.rating, 0) / portfolio.testimonials.length;
-  return [
-    {
-      "@type": "Person",
-      "@id": `${personId(siteUrl)}-reviewed`,
-      name: portfolio.personalInfo.name,
-      aggregateRating: {
-        "@type": "AggregateRating",
-        ratingValue: Number(rating.toFixed(1)),
-        reviewCount: portfolio.testimonials.length,
-        bestRating: 5,
-      },
-      review: portfolio.testimonials.map((item) => ({
-        "@type": "Review",
-        reviewBody: item.quote,
-        author: { "@type": "Person", name: item.author },
-        reviewRating: { "@type": "Rating", ratingValue: item.rating, bestRating: 5 },
-      })),
-    },
-  ];
-}
-
 export function buildProjectJsonLd(
   portfolio: PortfolioContent,
   project: Project,
@@ -243,7 +218,6 @@ export function generateSiteJsonLd(
       buildProfilePageSchema(portfolio, siteUrl),
       buildWebSiteSchema(portfolio, siteUrl),
       ...(faq ? [faq] : []),
-      ...buildReviewGraph(portfolio, siteUrl),
       buildBreadcrumbSchema(
         [
           { name: "Home", url: siteUrl },
